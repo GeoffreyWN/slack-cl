@@ -1,4 +1,4 @@
-// Your web app's Firebase configuration
+import firebase from 'firebase'
   var firebaseConfig = {
     apiKey: "AIzaSyD1MrNVFRLj8ubfct1N84braolMK6zcmUs",
     authDomain: "slack-cl-6eac0.firebaseapp.com",
@@ -8,4 +8,9 @@
     appId: "1:214049339347:web:0cb18db5b1194d7a6c6126"
   };
   // Initialize Firebase
-//   firebase.initializeApp(firebaseConfig)
+const firebaseApp = firebase.initializeApp(firebaseConfig)
+const db = firebaseApp.firestore()
+const auth = firebase.auth()
+const provider = new firebase.auth.GoogleAuthProvider()
+
+export { auth, db, provider }
