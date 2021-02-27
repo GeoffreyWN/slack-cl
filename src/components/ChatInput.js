@@ -1,11 +1,11 @@
 import { Button } from '@material-ui/core';
-import React, { useRef, useState } from 'react'
+import React, {  useState } from 'react'
 import styled from "styled-components";
 import { db } from '../firebase';
 import firebase from 'firebase'
 
 
-const ChatInput = ({channelName, channelId}) => {
+const ChatInput = ({channelName, channelId, chatRef}) => {
     const [input, setInput] = useState('')
     // const inputRef = useRef(null)
     const sendMessage = (e) => {
@@ -20,12 +20,16 @@ const ChatInput = ({channelName, channelId}) => {
             userImage: 'https://avatarfiles.alphacoders.com/809/80987.jpg'
         })
 
+        chatRef.current.scrollIntoView({
+          behavior: 'smooth'
+        })
+
         setInput('')
     }
     return (
         <ChatInputContainer>
             <form>
-                <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={`MessageRoom`} />
+                <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={`Message ${channelName}`} />
                 <Button hidden type="submit" onClick={sendMessage}>
                     SEND
                 </Button>
